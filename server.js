@@ -45,6 +45,10 @@ app.get("/manifest.json", function (req, res) {
     );
 });
 
+app.get("/google5540b8b6e8a3bbeb.html", function (req, res) {
+    res.send("google-site-verification: google5540b8b6e8a3bbeb.html");
+});
+
 // ===============================
 // SERVICE WORKER
 // ===============================
