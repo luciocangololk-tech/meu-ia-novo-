@@ -22,6 +22,17 @@ const MODELO = "gemma4:31b";
 
 app.use(express.json({ limit: "30mb" }));
 
+// ===============================
+// VERIFICAÇÃO GOOGLE
+// ===============================
+
+app.get("/google5540b8b6e8a3bbeb.html", function (req, res) {
+    res.type("text/plain");
+    res.send(
+        "google-site-verification: google5540b8b6e8a3bbeb.html"
+    );
+});
+
 // Servir o Meu AI
 app.use(express.static(__dirname));
 
@@ -43,10 +54,6 @@ app.get("/manifest.json", function (req, res) {
     res.sendFile(
         path.join(__dirname, "manifest.json")
     );
-});
-
-app.get("/google5540b8b6e8a3bbeb.html", function (req, res) {
-    res.send("google-site-verification: google5540b8b6e8a3bbeb.html");
 });
 
 // ===============================
