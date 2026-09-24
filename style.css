@@ -1,0 +1,327 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+.app {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 260px;
+    background: #181818;
+    border-right: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.new-chat {
+    background: #2a2a2a;
+    padding: 13px;
+    border-radius: 10px;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.new-chat:hover,
+.sidebar-bottom button:hover {
+    background: #333;
+}
+
+.history {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.history h3 {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-bottom button {
+    background: transparent;
+    padding: 11px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+/* MAIN */
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.topbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.topbar span {
+    flex: 1;
+    font-weight: bold;
+}
+
+.topbar button {
+    background: transparent;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+.topbar button:hover {
+    background: #2a2a2a;
+}
+
+/* CHAT */
+
+.chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px 20px;
+}
+
+.welcome {
+    max-width: 850px;
+    margin: 80px auto 0;
+    text-align: center;
+}
+
+.robot {
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+.welcome h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.suggestions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 650px;
+    margin: auto;
+}
+
+.suggestions button {
+    background: #1d1d1d;
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.suggestions button:hover {
+    background: #292929;
+}
+
+/* MENSAGENS */
+
+.message {
+    max-width: 850px;
+    margin: 15px auto;
+    padding: 14px 16px;
+    border-radius: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.user-message {
+    background: #2a2a2a;
+}
+
+.ai-message {
+    background: #181818;
+    border: 1px solid #292929;
+}
+
+/* INPUT */
+
+.input-area {
+    padding: 15px 20px 18px;
+    border-top: 1px solid #2a2a2a;
+}
+
+.input-box {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1d1d1d;
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 8px;
+}
+
+.input-box textarea {
+    flex: 1;
+    resize: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    min-height: 40px;
+    max-height: 150px;
+    padding: 10px;
+    font-family: inherit;
+}
+
+.icon,
+.send {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: transparent;
+}
+
+.icon:hover {
+    background: #303030;
+}
+
+.send {
+    background: #fff;
+    color: #111;
+    font-size: 18px;
+}
+
+.send:hover {
+    opacity: .85;
+}
+
+.input-area small {
+    display: block;
+    max-width: 900px;
+    margin: 8px auto 0;
+    color: #777;
+    text-align: center;
+}
+
+/* DEFINIÇÕES */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .7);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.settings {
+    position: relative;
+    width: min(420px, 90%);
+    background: #1c1c1c;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.settings h2 {
+    margin-bottom: 25px;
+}
+
+.settings label {
+    display: block;
+    margin-bottom: 18px;
+    color: #ccc;
+}
+
+.settings input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 11px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: transparent;
+    font-size: 18px;
+}
+
+.save {
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #111;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* TELEMÓVEL */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .suggestions {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome {
+        margin-top: 40px;
+    }
+
+    .welcome h1 {
+        font-size: 25px;
+    }
+
+    .robot {
+        font-size: 55px;
+    }
+}
