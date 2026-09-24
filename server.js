@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const OLLAMA_URL = "https://ollama.com";
 const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY;
 
-const MODELO = "gemma4:cloud";
+const MODELO = "gemma4:31b";
 
 // ===============================
 // EXPRESS
