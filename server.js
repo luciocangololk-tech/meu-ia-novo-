@@ -39,7 +39,6 @@ app.get("/google5540b8b6e8a3bbeb.html", function (req, res) {
 
 app.get("/sitemap.xml", function (req, res) {
     res.type("application/xml");
-
     res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
@@ -48,7 +47,10 @@ app.get("/sitemap.xml", function (req, res) {
 </urlset>`);
 });
 
-// Servir o Meu AI
+// ===============================
+// SERVIR O MEU AI
+// ===============================
+
 app.use(express.static(__dirname));
 
 // ===============================
@@ -102,7 +104,7 @@ app.get("/icon-512.png", function (req, res) {
 // ===============================
 
 app.get("/teste", function (req, res) {
-    res.send("🤖 Meu AI está funcionando!");
+    res.send("🤖 VERSÃO NOVA DO MEU AI");
 });
 
 // ===============================
@@ -126,7 +128,6 @@ app.get("/teste-ollama", async function (req, res) {
             `${OLLAMA_URL}/api/tags`,
             {
                 method: "GET",
-
                 headers: {
                     "Authorization":
                         `Bearer ${OLLAMA_API_KEY}`
