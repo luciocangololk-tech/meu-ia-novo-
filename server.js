@@ -38,13 +38,7 @@ app.get("/google5540b8b6e8a3bbeb.html", function (req, res) {
 // ===============================
 
 app.get("/sitemap.xml", function (req, res) {
-    res.type("application/xml");
-    res.send(`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://meu-ia-novo.onrender.com/</loc>
-    </url>
-</urlset>`);
+    res.send("SITEMAP DO MEU AI FUNCIONANDO");
 });
 
 // ===============================
