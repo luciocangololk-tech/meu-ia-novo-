@@ -7,10 +7,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// ===============================
-// CONFIGURAÇÃO
-// ===============================
-
 const OLLAMA_URL = "https://ollama.com";
 const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY;
 
@@ -23,10 +19,10 @@ const MODELO = "gemma4:31b";
 app.use(express.json({ limit: "30mb" }));
 
 // ===============================
-// VERIFICAÇÃO GOOGLE
+// GOOGLE SEARCH CONSOLE
 // ===============================
 
-app.get("/google5540b8b6e8a3bbeb.html", function (req, res) {
+app.get("/google5540b8b6e8a3bbeb.html", (req, res) => {
     res.type("text/plain");
     res.send(
         "google-site-verification: google5540b8b6e8a3bbeb.html"
@@ -37,80 +33,94 @@ app.get("/google5540b8b6e8a3bbeb.html", function (req, res) {
 // SITEMAP
 // ===============================
 
-app.get("/sitemap.xml", function (req, res) {
-    res.send("SITEMAP DO MEU AI FUNCIONANDO");
+app.get("/sitemap.xml", (req, res) => {
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://meu-ia-novo.onrender.com/</loc>
+    </url>
+</urlset>`;
+
+    res.status(200);
+    res.set("Content-Type", "application/xml; charset=utf-8");
+    res.send(sitemap);
 });
 
 // ===============================
-// SERVIR O MEU AI
+// ROBOTS.TXT
 // ===============================
 
-app.use(express.static(__dirname));
+app.get("/robots.txt", (req, res) => {
+
+    res.type("text/plain");
+
+    res.send(
+        "User-agent: *\n" +
+        "Allow: /\n\n" +
+        "Sitemap: https://meu-ia-novo.onrender.com/sitemap.xml"
+    );
+});
 
 // ===============================
 // PÁGINA PRINCIPAL
 // ===============================
 
-app.get("/", function (req, res) {
-    res.sendFile(
-        path.join(__dirname, "index.html")
-    );
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
+
+// ===============================
+// ARQUIVOS DO SITE
+// ===============================
+
+app.use(express.static(__dirname));
 
 // ===============================
 // MANIFEST
 // ===============================
 
-app.get("/manifest.json", function (req, res) {
-    res.sendFile(
-        path.join(__dirname, "manifest.json")
-    );
+app.get("/manifest.json", (req, res) => {
+    res.sendFile(path.join(__dirname, "manifest.json"));
 });
 
 // ===============================
 // SERVICE WORKER
 // ===============================
 
-app.get("/sw.js", function (req, res) {
-    res.sendFile(
-        path.join(__dirname, "sw.js")
-    );
+app.get("/sw.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "sw.js"));
 });
 
 // ===============================
 // ÍCONES
 // ===============================
 
-app.get("/icon-192.png", function (req, res) {
-    res.sendFile(
-        path.join(__dirname, "icon-192.png")
-    );
+app.get("/icon-192.png", (req, res) => {
+    res.sendFile(path.join(__dirname, "icon-192.png"));
 });
 
-app.get("/icon-512.png", function (req, res) {
-    res.sendFile(
-        path.join(__dirname, "icon-512.png")
-    );
+app.get("/icon-512.png", (req, res) => {
+    res.sendFile(path.join(__dirname, "icon-512.png"));
 });
 
 // ===============================
 // TESTE
 // ===============================
 
-app.get("/teste", function (req, res) {
-    res.send("🤖 VERSÃO NOVA DO MEU AI");
+app.get("/teste", (req, res) => {
+    res.send("🤖 MEU AI - SERVIDOR NOVO FUNCIONANDO");
 });
 
 // ===============================
 // TESTE OLLAMA
 // ===============================
 
-app.get("/teste-ollama", async function (req, res) {
+app.get("/teste-ollama", async (req, res) => {
 
     try {
 
         if (!OLLAMA_API_KEY) {
-
             return res.status(500).json({
                 ollama: "erro",
                 mensagem:
@@ -129,8 +139,7 @@ app.get("/teste-ollama", async function (req, res) {
             }
         );
 
-        const texto =
-            await resposta.text();
+        const texto = await resposta.text();
 
         res.status(resposta.status).send(texto);
 
@@ -147,7 +156,7 @@ app.get("/teste-ollama", async function (req, res) {
 // CHAT COM OLLAMA CLOUD
 // ===============================
 
-app.post("/api/chat", async function (req, res) {
+app.post("/api/chat", async (req, res) => {
 
     try {
 
@@ -173,6 +182,7 @@ app.post("/api/chat", async function (req, res) {
         }
 
         const mensagens = [
+
             {
                 role: "system",
                 content: `
@@ -232,8 +242,7 @@ Ajuda o utilizador de forma amigável.
             }
         );
 
-        const dados =
-            await resposta.json();
+        const dados = await resposta.json();
 
         if (!resposta.ok) {
 
@@ -289,35 +298,16 @@ Ajuda o utilizador de forma amigável.
 app.listen(
     PORT,
     "0.0.0.0",
-    function () {
+    () => {
 
         console.log("");
-        console.log(
-            "========================================"
-        );
-
+        console.log("========================================");
         console.log("🤖 MEU AI");
-
-        console.log(
-            `🌐 Servidor iniciado na porta ${PORT}`
-        );
-
-        console.log(
-            `☁️ Ollama Cloud: ${OLLAMA_URL}`
-        );
-
-        console.log(
-            `🧠 Modelo: ${MODELO}`
-        );
-
-        console.log(
-            "🚀 MODO CLOUD ATIVADO!"
-        );
-
-        console.log(
-            "========================================"
-        );
-
+        console.log(`🌐 Servidor iniciado na porta ${PORT}`);
+        console.log(`☁️ Ollama Cloud: ${OLLAMA_URL}`);
+        console.log(`🧠 Modelo: ${MODELO}`);
+        console.log("🚀 MODO CLOUD ATIVADO!");
+        console.log("========================================");
         console.log("");
     }
 );
